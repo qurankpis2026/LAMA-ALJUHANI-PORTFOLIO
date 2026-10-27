@@ -1844,7 +1844,7 @@ function render(fit){
 
   document.getElementById('legend').innerHTML = state.lens==='sat'
     ? `<div><span class="sw" style="background:${C.green}"></span>غير متقاطع</div><div><span class="sw" style="background:${C.dim}"></span>متقاطع</div><div><span class="sw ring"></span>بفر 300 م</div>`
-    : state.lens==='all' ? `${SECT.map(([n,c],k)=>`<div><span class="sw" style="background:${c}"></span>${n} · ${DATA.filter(d=>sectorOf(d)===k).length}</div>`).join('')}<div><span class="sw ring"></span>بفر 300 م</div>`
+    : state.lens==='all' ? `${SECT.map(([n,c],k)=>`<div><span class="sw" style="background:${c}"></span>${DATA.filter(d=>sectorOf(d)===k).length}</div>`).join('')}<div><span class="sw ring"></span>بفر 300 م</div>`
     : `<div><span class="sw" style="background:${C.green}"></span>قهوة مختصة</div><div><span class="sw" style="background:${C.white}"></span>درايف ثرو</div><div><span class="sw" style="background:${C.tealHi}"></span>مقهى</div><div><span class="sw ring"></span>بفر 300 م</div>`;
 
   drawMap(B, shown, fit);
@@ -2306,7 +2306,7 @@ function _insights(){
   [['ش',0],['ق',90],['ج',180],['غ',270]].forEach(([t,a])=>{const rad=a*Math.PI/180; svg.append('text').attr('x',cx+Math.sin(rad)*(R+10)).attr('y',cy-Math.cos(rad)*(R+10)+3).attr('text-anchor','middle').style('font-family','var(--font)').style('font-size','10px').style('fill','#EAF5EE').text(t);});
   const col=d=>sectCol(d);
   [60,180,300].forEach(deg=>{const a=deg*Math.PI/180; svg.append('line').attr('x1',cx).attr('y1',cy).attr('x2',cx+Math.sin(a)*R).attr('y2',cy-Math.cos(a)*R).attr('stroke','rgba(255,255,255,.45)').attr('stroke-width',1.2);});
-  window.__sectLbl=()=>[[0,'شمال'],[120,'شرق'],[240,'غرب']].forEach(([deg,t],k)=>{const a=deg*Math.PI/180; svg.append('text').attr('x',cx+Math.sin(a)*(R*0.62)).attr('y',cy-Math.cos(a)*(R*0.62)).attr('text-anchor','middle').style('font-family','var(--font)').style('font-size','11px').style('fill',SECT[k][1]).style('font-weight','600').style('paint-order','stroke').style('stroke','#06120E').style('stroke-width','4px').raise().text(SECT[k][0]);});
+  window.__sectLbl=()=>[].forEach(([deg,t],k)=>{const a=deg*Math.PI/180; svg.append('text').attr('x',cx+Math.sin(a)*(R*0.62)).attr('y',cy-Math.cos(a)*(R*0.62)).attr('text-anchor','middle').style('font-family','var(--font)').style('font-size','11px').style('fill',SECT[k][1]).style('font-weight','600').style('paint-order','stroke').style('stroke','#06120E').style('stroke-width','4px').raise().text(SECT[k][0]);});
   const g=svg.append('g');
   DATA.forEach(d=>{const k=Math.min(km(d),MAXK),a=brg(d),rr=r(k); g.append('circle').attr('cx',cx+Math.sin(a)*rr).attr('cy',cy-Math.cos(a)*rr).attr('r',1.4).attr('fill',col(d)).attr('fill-opacity',.8);});
   window.__sectLbl();
