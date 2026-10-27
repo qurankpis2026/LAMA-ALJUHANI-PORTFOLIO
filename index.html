@@ -3,18 +3,16 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>لمى الجهني</title>
 <style>html,body{margin:0;height:100%;background:#0b140c}
-body{overflow-x:auto;overflow-y:hidden}
+body{overflow:hidden}
 #f{position:absolute;top:0;left:0;border:0;transform-origin:0 0;display:block}</style>
 </head><body>
-<iframe id="f" src="site.html" title="لمى الجهني" allow="fullscreen; autoplay"></iframe>
+<iframe id="f" src="site.html?v=5" title="لمى الجهني" allow="fullscreen; autoplay"></iframe>
 <script>
-/* Design is locked at 1280px wide: it never reflows and never shrinks.
-   Wider screens scale it up proportionally; narrower screens keep it at
-   full size and scroll sideways. */
+/* Design is locked at 1280px wide and never reflows. The whole frame is
+   scaled uniformly to the screen width, so phones show the full design. */
 (function(){var D=1280,f=document.getElementById('f'),b=document.body;
-function fit(){var w=document.documentElement.clientWidth,h=window.innerHeight,s=Math.max(1,w/D);
- f.style.width=D+'px';f.style.height=(h/s)+'px';f.style.transform=s>1?'scale('+s+')':'none';
- b.style.width=(D*s)+'px';}
+function fit(){var w=document.documentElement.clientWidth,h=window.innerHeight,s=w/D;
+ f.style.width=D+'px';f.style.height=(h/s)+'px';f.style.transform='scale('+s+')';}
 fit();addEventListener('resize',fit);addEventListener('orientationchange',function(){setTimeout(fit,200)});})();
 </script>
 </body></html>
